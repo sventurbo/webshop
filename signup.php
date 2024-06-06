@@ -1,4 +1,6 @@
 <?php
+  session_start();
+  $_SESSION['name'] = "wert";
   require("connection.php");
 
   if(isset($_POST["submit"])){
@@ -94,14 +96,14 @@
             <label for="floatingPassword">Passwort</label>
           </div>
           
-          <div class="checkbox mb-3">
+          <!-- <div class="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me"> Angemeldet bleiben
             </label>
-          </div>
+          </div> -->
           <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Registrieren</button>
           <hr class="my-4">
-          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+          <small class="text-body-secondary">Haben Sie bereits ein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="login.php">Login</a> </small>
         </form>
       </div>
 
