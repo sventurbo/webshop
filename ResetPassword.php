@@ -42,6 +42,11 @@
                 <label for="floatingInput">Email Adresse</label>
             </div>
         </div>
+
+        <form action="ResetPassword.php" method="POST">
+            <button name="buttonResetPassword" class="w-10 btn btn-lg btn-primary" type="submit">Passwort zurücksetzen!</button>
+        </form>
+
         </div>
     </main>
 </body>
