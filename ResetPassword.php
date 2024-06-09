@@ -239,7 +239,7 @@ function sendmail() {
 
                 </body>
                 </html>
-                HTML
+                HTML;
 
         }
 
