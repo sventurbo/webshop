@@ -93,148 +93,153 @@ function sendmail() {
             'Reply-To: webshop.team.informatik@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        if (mail($recipient, $subject, $message, $headers)) {
-            echo '
-            <html>
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Popup Password Reset</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
+            if (mail($recipient, $subject, $message, $headers)) {
+                echo <<<HTML
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Popup Password Reset</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        #popupBox {
+                            display: none;
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 300px;
+                            padding: 20px;
+                            background-color: #f9f9f9;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 10px;
+                            text-align: center;
+                            z-index: 1000;
+                        }
+                        #popupBox .close {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: transparent;
+                            border: none;
+                            font-size: 20px;
+                            color: red;
+                            cursor: pointer;
+                        }
+                        #overlay {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            z-index: 999;
+                        }
+                    </style>
+                </head>
+                <body>
+            
+                <div id="overlay"></div>
+                <div id="popupBox">
+                    <button class="close" onclick="closePopup()">&times;</button>
+                    <h2>E-Mail versendet!</h2>
+                    <p>Vergiss nicht deinen Spam Ordner zu checken.</p>
+                </div>
+            
+                <script>
+                    function closePopup() {
+                        document.getElementById('popupBox').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
                     }
-                    popupBox {
-                        display: none;
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 300px;
-                        padding: 20px;
-                        background-color: #f9f9f9;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        border-radius: 10px;
-                        text-align: center;
-                        z-index: 1000;
-                    }
-                    popupBox .close {
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        background-color: transparent;
-                        border: none;
-                        font-size: 20px;
-                        color: red;
-                        cursor: pointer;
-                    }
-                    overlay {
-                        display: none;
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        z-index: 999;
-                    }
-                </style>
-            </head>
-            <body>
-
-            <div id="overlay"></div>
-            <div id="popupBox">
-                <button class="close" onclick="closePopup()">&times;</button>
-                <h2>E-Mail versendet!</h2>
-                <p>Vergiss nicht deinen Spam Ordner zu checken.</p>
-            </div>
-
-            <script>
-                function closePopup() {
-                    document.getElementById('popupBox').style.display = 'none';
-                    document.getElementById('overlay').style.display = 'none';
-                }
-
-                function showPopup() {
-                    document.getElementById('popupBox').style.display = 'block';
-                    document.getElementById('overlay').style.display = 'block';
-                }
+                        
                 
-            </script>
-
-            </body>
-            </html>'
-
-        } else {
-            echo '<html>
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Popup Password Reset</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
+                    function showPopup() {
+                        document.getElementById('popupBox').style.display = 'block';
+                        document.getElementById('overlay').style.display = 'block';
                     }
-                    popupBox {
-                        display: none;
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 300px;
-                        padding: 20px;
-                        background-color: #FFEAEB;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        border-radius: 10px;
-                        text-align: center;
-                        z-index: 1000;
+                    
+                </script>
+            
+                </body>
+                </html>
+            HTML;
+            
+            }   else {
+                echo <<<HTML
+                <!DOCTYPE html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Popup Password Reset</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        #popupBox {
+                            display: none;
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 300px;
+                            padding: 20px;
+                            background-color: #FFEAEB;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 10px;
+                            text-align: center;
+                            z-index: 1000;
+                        }
+                        #popupBox .close {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: transparent;
+                            border: none;
+                            font-size: 20px;
+                            color: red;
+                            cursor: pointer;
+                        }
+                        #overlay {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            z-index: 999;
+                        }
+                    </style>
+                </head>
+                <body>
+
+                <div id="overlay"></div>
+                <div id="popupBox">
+                    <button class="close" onclick="closePopup()">&times;</button>
+                    <h2 style="color: red;" >Fehler!</h2>
+                    <p>Die E-Mail konnte nicht versendet werden, bitte versuche es erneut oder kontaktiere uns!</p>
+                </div>
+
+                <script>
+                    function closePopup() {
+                        document.getElementById('popupBox').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
                     }
-                    popupBox .close {
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        background-color: transparent;
-                        border: none;
-                        font-size: 20px;
-                        color: red;
-                        cursor: pointer;
+
+                    function showPopup() {
+                        document.getElementById('popupBox').style.display = 'block';
+                        document.getElementById('overlay').style.display = 'block';
                     }
-                    overlay {
-                        display: none;
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        z-index: 999;
-                    }
-                </style>
-            </head>
-            <body>
 
-            <div id="overlay"></div>
-            <div id="popupBox">
-                <button class="close" onclick="closePopup()">&times;</button>
-                <h2 style="color: red;" >Fehler!</h2>
-                <p>Die E-Mail konnte nicht versendet werden, bitte versuche es erneut oder kontaktiere uns!</p>
-            </div>
+                </script>
 
-            <script>
-                function closePopup() {
-                    document.getElementById('popupBox').style.display = 'none';
-                    document.getElementById('overlay').style.display = 'none';
-                }
-
-                function showPopup() {
-                    document.getElementById('popupBox').style.display = 'block';
-                    document.getElementById('overlay').style.display = 'block';
-                }
-
-            </script>
-
-            </body>
-            </html>'
+                </body>
+                </html>
+                HTML
 
         }
 
@@ -245,7 +250,5 @@ function sendmail() {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buttonResetPassword'])) {
     sendmail();
 }
-
-
 
 ?>
