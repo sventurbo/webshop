@@ -98,10 +98,11 @@
            <hr class="my-4">
            <small class="text-body-secondary">Haben Sie noch kein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Registrieren</a> </small>
         </form>
-      </div>      
+      </div> 
+      <button type="button" class="btn btn-light">Light</button>    
     </div>
 
-    <button type="button" class="btn btn-light">Light</button>
+    
         
         </main>
         <footer>
