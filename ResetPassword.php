@@ -319,6 +319,7 @@ function sendmail() {
             </html>
             HTML;
 
+            showPopup();
         }
     }
 }
