@@ -2,6 +2,35 @@
   require("connection.php");
 ?>
 
+<?php
+  if(isset($_POST["submit"])){
+
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $stmt = $con->prepare("SELECT * FROM users WHERE email=:email");
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $userExists = $stmt->fetchAll();
+    var_dump($userExists);
+
+    $passwordHashed = $userExists[0]["password"];
+    $checkPassword = password_verify($password, $passwordHashed);
+
+    if($checkPassword === false){
+      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
+    }
+    if($checkPassword === true){
+
+      session_start();
+      $_SESSION["email"] = $userExists[0]["email"];
+
+      header("Location: store.php");
+    }
+  } 
+  echo "$email"
+ ?>
+
 <!doctype html>
 <html lang="de" data-bs-theme="dark" data-lt-installed="true">
     <head>
@@ -98,32 +127,3 @@
         ></script>
     </body>
 </html>
-
-<?php
-  if(isset($_POST["submit"])){
-
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    $stmt = $con->prepare("SELECT * FROM users WHERE email=:email");
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    $userExists = $stmt->fetchAll();
-    var_dump($userExists);
-
-    $passwordHashed = $userExists[0]["password"];
-    $checkPassword = password_verify($password, $passwordHashed);
-
-    if($checkPassword === false){
-      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
-    }
-    if($checkPassword === true){
-
-      session_start();
-      $_SESSION["email"] = $userExists[0]["email"];
-
-      header("Location: store.php");
-    }
-  } 
-  echo "$email"
- ?>
