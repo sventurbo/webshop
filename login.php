@@ -91,10 +91,10 @@
           
           <div class="checkbox mb-3">
             <label>
-              <input type="checkbox" value="remember-me"> Angemeldet bleiben Hallo
+              <input type="checkbox" value="remember-me"> Angemeldet bleiben
             </label>
           </div>
-          <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Anmelden TEST</button>
+          <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Anmelden</button>
            <hr class="my-4">
            <small class="text-body-secondary">Haben Sie noch kein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Registrieren</a> </small>
         </form>
@@ -103,10 +103,10 @@
     
     <div>
       <form action="ResetPassword.php" method="POST">
-        <button name="buttonResetPassword" class="w-100 btn btn-lg btn-primary" type="submit">Passwort vergessen!</button>
+        <button name="buttonResetPassword" class="w-10 btn btn-lg btn-primary" type="submit">Passwort vergessen!</button>
       </form>
 
-      
+
         </main>
         <footer>
             <?php include('footer.php'); ?>
