@@ -72,14 +72,15 @@ function sendmail() {
 
             $recipient = '$emailsql';
             $subject = 'Passwort zurücksetzen';
-            $message = '<html>
+            $message = '
+                        <html>
                         <head>
                             <title>HTML Email</title>
                         </head>
 
 
                         <body>
-                            <h1>Hallo, '. htmlspecialchars($username) .'!' </h1>
+                            <h1>Hallo, '. htmlspecialchars($username) .'! </h1>
                             <p>Du erhälst diese E-Mail, da du dein Passwort <b>zurücksetzen</b> möchtest. Wenn 		dies nicht der Fall sein sollte, kannst du diese E-Mail ignorieren.</p>
                             
                             <p> Klicke auf den Button, um ein neues Passwort zu vergeben.</p>
@@ -87,7 +88,7 @@ function sendmail() {
                             <a href="' . htmlspecialchars($sUrl) . '" style="text-align: center; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color: #007BFF; text-decoration: none; border-radius: 5px;">Passwort zurücksetzen</a>
                     
                         </body>
-                        </html>;
+                        </html>';
             $headers = 'From: webshop.team.informatik@gmail.com' . "\r\n" .
             'Reply-To: webshop.team.informatik@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
