@@ -31,7 +31,7 @@
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="align-items-center g-lg-5 py-5">
 
-            <div class="col-md-10 col-lg-2">
+            <div class="align-items-center">
                 <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3" style="text-align: center">Passwort Zurücksetzen</h1>
                 <p>Gebe hier die E-Mail deines Benutzerkontos ein. Wir versenden im Anschluss eine E-Mail an dich, in welcher du dein Passwort zurücksetzen kannst.</p>
                 <p></p> 
