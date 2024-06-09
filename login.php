@@ -91,7 +91,7 @@
           
           <div class="checkbox mb-3">
             <label>
-              <input type="checkbox" value="remember-me"> Angemeldet bleiben
+              <input type="checkbox" value="remember-me"> Angemeldet bleiben Hallo
             </label>
           </div>
           <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Anmelden TEST</button>
