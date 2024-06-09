@@ -1,7 +1,18 @@
+<?php
+session_start();
+ 
+ 
+if (isset($_SESSION['email'])) {
+   echo "Herzlich Willkommen ".$_SESSION['email'];
+} else {
+    header("Location: login.php?msg=1");
+}
+?>
+
 <!doctype html>
-<html lang="de">
+<html lang="de" data-bs-theme="dark" data-lt-installed="true">
     <head>
-        <title>Store</title>
+        <title>Produkte</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -24,12 +35,6 @@
         </header>
         <main>
 
-
-
-
-
-
-        
         </main>
         <footer>
             <?php include('footer.php'); ?>

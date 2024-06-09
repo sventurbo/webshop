@@ -1,60 +1,35 @@
-<header>
-            <nav
-                class="navbar navbar-expand-sm navbar"
-            >
-                <div class="container">
-                    <a class="navbar-brand" href="/">Webshop</a>
-                    <button
-                        class="navbar-toggler d-lg-none"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapsibleNavId"
-                        aria-controls="collapsibleNavId"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavId">
-                        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/" aria-current="page"
-                                    >Home
-                                    <span class="visually-hidden">(current)</span></a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">XYZ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">XYZ</a>
-                            </li>
-                            <!-- <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="dropdownId"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    >Dropdown</a
-                                >
-                                <div
-                                    class="dropdown-menu"
-                                    aria-labelledby="dropdownId"
-                                >
-                                    <a class="dropdown-item" href="#"
-                                        >Action 1</a
-                                    >
-                                    <a class="dropdown-item" href="#"
-                                        >Action 2</a
-                                    >
-                                </div>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
-        </header>
-        
+     
+<nav>
+    <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="store.php" class="nav-link px-2">Produkte</a></li>
+        <li><a href="#" class="nav-link px-2">#</a></li>
+        <li><a href="#" class="nav-link px-2">#</a></li>
+        <li><a href="#" class="nav-link px-2">#</a></li>
+        <li><div class="dropdown">
+            <a href="#" class="nav-link px-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link</a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+            </div></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <a href="login.php"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
+        <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
+      </div>
+    </header>
+  </div>
+</nav>
