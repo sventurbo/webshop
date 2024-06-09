@@ -319,7 +319,9 @@ function sendmail() {
             </html>
             HTML;
 
-            showPopup();
+            echo '<script>'
+            echo 'showPopup()'
+            echo '</script>'
         }
     }
 }
