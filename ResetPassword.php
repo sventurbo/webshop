@@ -244,6 +244,81 @@ function sendmail() {
 
         }
 
+        } else {
+
+            echo <<<HTML
+            <!DOCTYPE html>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Fehlermeldung E-Mail</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+                    #popupBox {
+                        display: none;
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 300px;
+                        padding: 20px;
+                        background-color: #FFEAEB;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        border-radius: 10px;
+                        text-align: center;
+                        z-index: 1000;
+                    }
+                    #popupBox .close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background-color: transparent;
+                        border: none;
+                        font-size: 20px;
+                        color: red;
+                        cursor: pointer;
+                    }
+                    #overlay {
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.5);
+                        z-index: 999;
+                    }
+                </style>
+            </head>
+            <body>
+
+            <div id="overlay"></div>
+            <div id="popupBox">
+                <button class="close" onclick="closePopup()">&times;</button>
+                <h2 style="color: red;" >Fehler!</h2>
+                <p>Es existiert kein Account mit dieser E-Mail. Bitte überprüfe die Eingabe oder erstelle hier ein Nutzerkonto: </p>
+                <a href="http://sventurbo.bplaced.net/signup.php"> Registrieren</a>
+            </div>
+
+            <script>
+                function closePopup() {
+                    document.getElementById('popupBox').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'none';
+                }
+
+                function showPopup() {
+                    document.getElementById('popupBox').style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+                }
+
+            </script>
+
+            </body>
+            </html>
+            HTML;
+
         }
     }
 }
