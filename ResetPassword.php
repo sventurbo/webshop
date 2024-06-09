@@ -94,6 +94,7 @@ function sendmail() {
             'X-Mailer: PHP/' . phpversion();
 
         if (mail($recipient, $subject, $message, $headers)) {
+            echo '
             <html>
             <head>
                 <meta charset="UTF-8">
@@ -162,10 +163,10 @@ function sendmail() {
             </script>
 
             </body>
-            </html>
+            </html>'
 
         } else {
-            <html>
+            echo '<html>
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -233,7 +234,7 @@ function sendmail() {
             </script>
 
             </body>
-            </html>
+            </html>'
 
         }
 
