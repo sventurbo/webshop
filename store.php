@@ -1,10 +1,19 @@
 <?php
+require("connection.php");
 session_start();
  
  
  if (!isset($_SESSION['email'])) {
-    header("Location: login.php?msg=1");
- }
+    header("Location: login.php?msg=1"); }
+
+
+$stmt = $con->prepare("SELECT id,title,description,price
+FROM products");
+$stmt->execute();
+$result = $stmt
+
+
+
 ?>
 
 <!doctype html>
@@ -59,17 +68,19 @@ session_start();
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     
-            <?php for ($x = 0; $x < 6; $x++) { ?>
+            <?php while($row = $result->fetch()) { ?>
                 <div class="col">
                     <div class="card shadow-sm">
-                    <img src="https://picsum.photos/800/400" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">                        <div class="card-body">
-                        <p class="card-text">Beschreibung hier.</p>
+                    <img src="https://picsum.photos/800/400" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title"> <?= $row['title'] ?> </h5>
+                        <p class="card-text"><?= $row['description'] ?></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Ansehen</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary">Warenkorb</button>
                             </div>
-                            <small class="text-body-secondary">Preis €€</small>
+                            <small class="text-body-secondary"><?= $row['price'] ?></small>
                         </div>
                         </div>
                     </div>
