@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="de" data-bs-theme="dark" data-lt-installed="true">
 <head>
@@ -45,8 +44,10 @@
 </body>
 </html>
 
-<?php 
+<?php
+
 function sendmail() {
+    
     require("connection.php");
 
     var_dump($_POST); 
@@ -58,14 +59,16 @@ function sendmail() {
     $stmt->execute();
     $result = $stmt->fetchAll();
     
-    foreach ($results as $row) {
+    foreach ($result as $row) {
         $emailsql = $row['email'];
         $username = $row['name']; 
     }
 
+    var_dump($emailsql);
+
     if($email == $emailsql) {
 
-        $recipient = '$emailsql';
+        $recipient = $emailsql;
         $subject = 'Passwort zurücksetzen';
         $message = '
                     <html>
@@ -89,6 +92,8 @@ function sendmail() {
         'X-Mailer: PHP/' . phpversion();
 
         if (mail($recipient, $subject, $message, $headers)) {
+            echo $recipient, $headers;
+            
             echo <<<HTML
             <!DOCTYPE html>
             <html>
@@ -141,8 +146,8 @@ function sendmail() {
             <div id="overlay"></div>
             <div id="popupBox">
                 <button class="close" onclick="closePopup()">&times;</button>
-                <h2>E-Mail versendet!</h2>
-                <p>Vergiss nicht deinen Spam Ordner zu checken.</p>
+                <h2 style="color: black">E-Mail versendet!</h2>
+                <p style="color: black">Vergiss nicht deinen Spam Ordner zu checken.</p>
             </div>
         
             <script>
@@ -217,7 +222,7 @@ function sendmail() {
             <div id="popupBox">
                 <button class="close" onclick="closePopup()">&times;</button>
                 <h2 style="color: red;" >Fehler!</h2>
-                <p>Die E-Mail konnte nicht versendet werden, bitte versuche es erneut oder kontaktiere uns!</p>
+                <p style="color: black">Die E-Mail konnte nicht versendet werden, bitte versuche es erneut oder kontaktiere uns!</p>
             </div>
 
             <script>
@@ -315,12 +320,14 @@ function sendmail() {
         </html>
         HTML;
     }
+
+
     
 }
     
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buttonResetPassword'])) {
-    
+
     sendmail();
 
 } 

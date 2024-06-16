@@ -4,7 +4,6 @@
   require("connection.php");
 
   if(isset($_POST["submit"])){
-    var_dump($_POST);
 
     $firstname = $_POST["firstname"];
     $name = $_POST["name"];
@@ -20,6 +19,7 @@
     if(!$userAlreadyExists){
       //Registrieren
       registerUser($firstname, $name, $email, $password);
+      
     }
     else{
       //User existiert bereits
@@ -28,7 +28,7 @@
 
   function registerUser($firstname, $name, $email, $password){
     global $con;
-    $stmt = $con->prepare("INSERT INTO users(firstname, name, email, password) VALUES (:firstname, :name, :email, :password)");
+    $stmt = $con->prepare("INSERT INTO users(firstname, `name`, email, `password`) VALUES (:firstname, :`name`, :email, :`password`);");
     $stmt->bindParam(":firstname", $firstname);
     $stmt->bindParam(":name", $name);
     $stmt->bindParam(":email", $email);
@@ -103,7 +103,7 @@
           </div> -->
           <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Registrieren</button>
           <hr class="my-4">
-          <small class="text-body-secondary">Haben Sie bereits ein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="login.php">Login</a> </small>
+          <small class="text-body-secondary">Haben Sie bereits ein Konto?  <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="login.php">Login</a> </small>
         </form>
       </div>
 

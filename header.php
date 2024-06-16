@@ -27,7 +27,13 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <a href="login.php"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
+      <?php
+                $current_page = basename($_SERVER['PHP_SELF']);
+                if ($current_page === 'store.php') {
+                    echo '<span class="cart-icon" onclick="openCart()">🛒</span>';
+                }
+                ?>
+        <a href="login.php?msg=0"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
         <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
       </div>
     </header>

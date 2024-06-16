@@ -1,8 +1,7 @@
 <?php
+  session_start();
   require("connection.php");
-?>
 
-<?php
   if(isset($_POST["submit"])){
 
     $email = $_POST["email"];
@@ -12,23 +11,22 @@
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $userExists = $stmt->fetchAll();
-    var_dump($userExists);
 
     $passwordHashed = $userExists[0]["password"];
     $checkPassword = password_verify($password, $passwordHashed);
 
-    if($checkPassword === false){
-      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
-    }
     if($checkPassword === true){
-
-      session_start();
       $_SESSION["email"] = $userExists[0]["email"];
 
       header("Location: store.php");
     }
+
+    if($checkPassword === false){
+      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
+    }
+    
   } 
-  echo "$email"
+  
  ?>
 
 <!doctype html>
@@ -68,17 +66,15 @@
 
       <div class="col-md-10 mx-auto col-lg-5 mt-3">
         <form action="login.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary" data-bitwarden-watching="1">
-        
 
         <?php 
           $msg = $_GET['msg'];
-        
-        if($msg === "1"){ ?>
-            <div class="form-floating">
-                            <div class="alert alert-danger" role="alert">
-                                Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.
-                            </div>
-                        </div>
+            if($msg === "1"){ ?>
+                <div class="form-floating">
+                  <div class="alert alert-danger" role="alert">
+                      Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.
+                    </div>
+                </div>
         <?php } ?>
 
           <div class="form-floating mb-3">
