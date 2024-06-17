@@ -7,10 +7,11 @@ session_start();
     header("Location: login.php?msg=1"); }
 
 
-$stmt = $con->prepare("SELECT id,title,description,price
-FROM products");
+$stmt = $con->prepare("SELECT id,title,description,price,img FROM products");
 $stmt->execute();
-$result = $stmt
+$products = $stmt;
+
+
 
 
 
@@ -38,22 +39,26 @@ $result = $stmt
 
     <body>
         <header>
-        <?php include('header.php'); ?>
+        <?php include('assets/templates/header.php'); ?>
         </header>
         <main>
 
+        <?php 
+        $product = $_GET["product"];
+        if($product === null){ ?>
+
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
             <div class="col-md-6 p-lg-5 mx-auto my-5">
-            <h1 class="display-3 fw-bold">Designed for engineers</h1>
-            <h3 class="fw-normal text-muted mb-3">Build anything you want with Aperture</h3>
+            <h1 class="display-3 fw-bold">Neu im Sortiment: </h1>
+            <h3 class="fw-normal text-muted mb-3">Coca Cola 0,33l Dose</h3>
             <div class="d-flex gap-3 justify-content-center lead fw-normal">
                 <a class="icon-link" href="#">
-                Learn more
-                <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                Ansehen
+                <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                 </a>
                 <a class="icon-link" href="#">
-                Buy
-                <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                Kaufen
+                <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                 </a>
             </div>
             </div>
@@ -61,6 +66,7 @@ $result = $stmt
             <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
 
+        
 
 
             <div class="album py-5 bg-body-tertiary">
@@ -68,17 +74,17 @@ $result = $stmt
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     
-            <?php while($row = $result->fetch()) { ?>
+            <?php while($row = $products->fetch()) { ?>
                 <div class="col">
                     <div class="card shadow-sm">
-                    <img src="https://picsum.photos/800/400" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                    <img src="<?= $row['img'] ?>" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
                     <div class="card-body">
                         <h5 class="card-title"> <?= $row['title'] ?> </h5>
                         <p class="card-text"><?= $row['description'] ?></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Ansehen</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Warenkorb</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Kaufen</button>
                             </div>
                             <small class="text-body-secondary"><?= $row['price'] ?></small>
                         </div>
@@ -89,6 +95,22 @@ $result = $stmt
                     </div>
                 </div>
             </div>
+
+        <?php } 
+        
+        
+        else { ?>
+            <div class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                <div class="my-3 py-3">
+                    <h2 class="display-5"><?= $productView['title'] ?></h2>
+                    <p class="lead"><?= $productView['description'] ?></p>
+                </div>
+                <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+            </div>
+            <?php } ?>
+
+
+
 
 
 
@@ -102,7 +124,7 @@ $result = $stmt
 
         </main>
         <footer>
-            <?php include('footer.php'); ?>
+            <?php include('assets/templates/footer.php'); ?>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
