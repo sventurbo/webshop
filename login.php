@@ -1,32 +1,41 @@
 <?php
-  session_start();
   require("connection.php");
-
+  session_start();
+  // Checkt ob Nutzer angemeldet ist, wenn ja, zurück zu store.php
+  if(isset($_SESSION['email'])){
+    header("Location: store.php");
+    exit; }
+  
   if(isset($_POST["submit"])){
-
     $email = $_POST["email"];
     $password = $_POST["password"];
-
-    $stmt = $con->prepare("SELECT * FROM users WHERE email=:email");
+    $stmt = $con->prepare("SELECT email,password FROM users WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $userExists = $stmt->fetchAll();
-
+    // Check ob der Nutzer existiert
+    if(!isset($userExists[0]["email"]) or $userExists[0]["email"] != $email){
+      $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
+    }
+    // Überprüfung, ob Passwörter übereinstimmen
+    if(isset($userExists[0]["password"])){
     $passwordHashed = $userExists[0]["password"];
     $checkPassword = password_verify($password, $passwordHashed);
-
-    if($checkPassword === true){
-      $_SESSION["email"] = $userExists[0]["email"];
-
-      header("Location: store.php");
+      if($checkPassword === true){
+        $_SESSION["email"] = $userExists[0]["email"];
+        header("Location: store.php");
+        if($checkPassword === false){
+          $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
+        } 
+      }else {
+      $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
     }
-
-    if($checkPassword === false){
-      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
-    }
-    
-  } 
-  
+  }
+} 
+  // Fehlercode 1, nichtautorisierter Zugriff
+  if(isset($_GET['msg']) &&  $_GET['msg'] === "1"){
+    $errorMsg = "Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.";
+  }
  ?>
 
 <!doctype html>
@@ -51,63 +60,49 @@
 
     <body>
         <header>
-        <?php include('assets\templates\header.php'); ?>
+        <?php include('assets/templates/header.php'); ?>
         </header>
         <main>
 
-  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="align-items-center g-lg-5 py-5">
+          <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="align-items-center g-lg-5 py-5">
 
-      <div class="col-md-10 mx-auto col-lg-2">
-        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Login:</h1>
-        <!-- <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
-      </div>
-
-
-      <div class="col-md-10 mx-auto col-lg-5 mt-3">
-        <form action="login.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary" data-bitwarden-watching="1">
-
-        <?php 
-          $msg = $_GET['msg'];
-            if($msg === "1"){ ?>
-                <div class="form-floating">
-                  <div class="alert alert-danger" role="alert">
-                      Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.
+              <div class="col-md-10 mx-auto col-lg-2">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Login:</h1>
+                <!-- <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
+              </div>
+              <div class="col-md-10 mx-auto col-lg-5 mt-3">
+                <form action="login.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary needs-validation was-validated" novalidate="" data-bitwarden-watching="1">
+                    <!-- Feld für Fehlermeldungen -->
+                    <?php if(isset($errorMsg)){ ?>
+                    <div class="form-floating">
+                      <div class="alert alert-danger" role="alert">
+                        <?php echo($errorMsg); ?>
+                        </div>
+                      </div> <?php } ?>
+                    <!-- Email Feld -->
+                    <div class="form-floating mb-3" >
+                      <input type="email" name="email"  class="form-control  is-invalid" id="floatingInput" placeholder="name@example.com" required="">
+                      <label for="floatingInput">Email Adresse</label>
                     </div>
-                </div>
-        <?php } ?>
-
-          <div class="form-floating mb-3">
-            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email Adresse</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-            <input type="password" name="password"  class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Passwort</label>
-          </div>
-          
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Angemeldet bleiben
-            </label>
-          </div>
-          <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Anmelden</button>
-           <hr class="my-4">
-           <small class="text-body-secondary">Haben Sie noch kein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Registrieren</a> </small>
-        </form>
-      </div>  
-    </div>
-    
-    <div>
-      <form action="ResetPassword.php" method="POST">
-        <button name="buttonResetPassword" class="w-10 btn btn-lg btn-primary" type="submit">Passwort vergessen!</button>
-      </form>
-
+                    <!-- Passwort Feld -->
+                    <div class="form-floating mb-3">
+                      <input type="password" name="password"  class="form-control  is-invalid" id="floatingPassword" placeholder="Password" required="">
+                      <label for="floatingPassword">Passwort</label>
+                      <!-- Passwort zurücksetzen Link -->
+                      <small class="text-body-secondary mt-4">Passwort vergessen? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Hier zurücksetzen.</a> </small>
+                    </div>
+                    <!-- Anmelden Button -->
+                    <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Anmelden</button>
+                    <hr class="my-4">
+                    <small class="text-body-secondary">Haben Sie noch kein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Registrieren</a> </small>
+                </form>
+              </div>     
+            </div>
 
         </main>
         <footer>
-            <?php include('assets\templates\footer.php'); ?>
+            <?php include('assets/templates/footer.php'); ?>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
