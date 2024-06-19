@@ -7,10 +7,17 @@ session_start();
     header("Location: login.php?msg=1"); }
 
 
+// Fetch all Products
 $stmt = $con->prepare("SELECT id,title,description,price,img FROM products");
 $stmt->execute();
 $productList = $stmt;
 $product = 0;
+
+// Fetch newest product
+$stmt = $con->prepare("SELECT id,title,description,price,img FROM products ORDER BY id DESC");
+$stmt->execute();
+$newest = $stmt;
+
 
 if(isset($_GET["product"])){
 $stmt2 = $con->prepare("SELECT title,description,price,img FROM products WHERE id ='".$_GET["product"]."'");
@@ -75,16 +82,17 @@ $stmt2->execute();
             </div>
 
             <?php }} else { ?>
+                <?php $newest = $newest->fetch(); ?>
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
             <div class="col-md-6 p-lg-5 mx-auto my-5">
             <h1 class="display-3 fw-bold">Neu im Sortiment: </h1>
-            <h3 class="fw-normal text-muted mb-3">Coca Cola 0,33l Dose</h3>
+            <h3 class="fw-normal text-muted mb-3"><?= $newest['title'] ?></h3>
             <div class="d-flex gap-3 justify-content-center lead fw-normal">
-                <a class="icon-link" href="?product=1">
+                <a class="icon-link" href="?product=<?= $newest['id'] ?>">
                 Ansehen
                 <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                 </a>
-                <a class="icon-link" href="#">
+                <a class="icon-link" href="?product=<?= $newest['id'] ?>">
                 Kaufen
                 <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                 </a>
