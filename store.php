@@ -170,7 +170,7 @@ if (isset($_SESSION['email'])) {
 
     <body>
         <header>
-        <?php include('header.php'); ?>
+        <?php include('assets\templates\header.php'); ?>
         </header>
         <main>
         
@@ -200,7 +200,7 @@ if (isset($_SESSION['email'])) {
         </main>
 
         <footer>
-            <?php include('footer.php'); ?>
+            <?php include('assets\templates\footer.php'); ?>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script

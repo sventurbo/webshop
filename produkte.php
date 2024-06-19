@@ -20,7 +20,7 @@
     </head>
 
     <header>
-        <?php include('header.php'); ?>
+        <?php include('assets\templates\header.php'); ?>
       </header>
 
     <div class="px-4 pt-5 my-5 text-center border-bottom">
@@ -59,7 +59,7 @@ $conn->close();
 
             </body>
     <footer>
-          <?php include('footer.php'); ?>
+          <?php include('assets\templates\footer.php'); ?>
         </footer>
 
         <!-- Bootstrap JavaScript Libraries -->
