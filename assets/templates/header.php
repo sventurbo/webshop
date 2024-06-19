@@ -11,10 +11,7 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="store.php" class="nav-link px-2">Produkte</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><div class="dropdown">
+        <!-- <li><div class="dropdown">
             <a href="#" class="nav-link px-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown link</a>
 
@@ -23,12 +20,16 @@
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-            </div></li>
+            </div></li> -->
       </ul>
 
       <div class="col-md-3 text-end">
+        <?php if(!isset($_SESSION['email'])){?>
         <a href="login.php"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
         <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
+        <?php } else{ ?>
+          <a href="assets\templates\logout.php"><button type="button" class="btn btn-outline-primary me-2">Abmelden</button></a>
+          <?php }?>
       </div>
     </header>
   </div>
