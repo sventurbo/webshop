@@ -1,32 +1,46 @@
 <?php
   require("connection.php");
+  session_start();
+
+
+  if(isset($_SESSION['email'])){
+    header("Location: store.php");
+    exit; }
 
   if(isset($_POST["submit"])){
 
     $email = $_POST["email"];
     $password = $_POST["password"];
-
-    $stmt = $con->prepare("SELECT * FROM users WHERE email=:email");
+    
+    $stmt = $con->prepare("SELECT email,password FROM users WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $userExists = $stmt->fetchAll();
-    var_dump($userExists);
 
+    if(!isset($userExists[0]["email"]) or $userExists[0]["email"] != $email){
+      $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
+    }
+   
+    if(isset($userExists[0]["password"])){
     $passwordHashed = $userExists[0]["password"];
     $checkPassword = password_verify($password, $passwordHashed);
+      if($checkPassword === true){
 
-    if($checkPassword === false){
-      echo "Login fehlgeschlagen, Passwort stimmt nicht überein";
+        $_SESSION["email"] = $userExists[0]["email"];
+
+        header("Location: store.php");
+        if($checkPassword === false){
+          $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
+        } 
+    } else{
+      $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
     }
-    if($checkPassword === true){
+  }
+} 
 
-      session_start();
-      $_SESSION["email"] = $userExists[0]["email"];
-
-      header("Location: store.php");
-    }
-  } 
-  echo "$email"
+  if(isset($_GET['msg']) &&  $_GET['msg'] === "1"){
+    $errorMsg = "Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.";
+  }
  ?>
 
 <!doctype html>
@@ -65,30 +79,31 @@
 
 
       <div class="col-md-10 mx-auto col-lg-5 mt-3">
-        <form action="login.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary" data-bitwarden-watching="1">
+        <form action="login.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary needs-validation was-validated" novalidate="" data-bitwarden-watching="1">
         
 
         <?php 
-          $msg = $_GET['msg'];
+          
         
-        if($msg === "1"){ ?>
+        if(isset($errorMsg)){ ?>
             <div class="form-floating">
                             <div class="alert alert-danger" role="alert">
-                                Sie müssen sich zuerst anmelden, um diesen Inhalt einzusehen.
+                              <?php echo($errorMsg); ?>
                             </div>
                         </div>
         <?php } ?>
 
-          <div class="form-floating mb-3">
-            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="name@example.com">
+          <div class="form-floating mb-3" >
+            <input type="email" name="email"  class="form-control  is-invalid" id="floatingInput" placeholder="name@example.com" required="">
             <label for="floatingInput">Email Adresse</label>
           </div>
           
           <div class="form-floating mb-3">
-            <input type="password" name="password"  class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" name="password"  class="form-control  is-invalid" id="floatingPassword" placeholder="Password" required="">
             <label for="floatingPassword">Passwort</label>
           </div>
           
+  
           <div class="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me"> Angemeldet bleiben
@@ -98,8 +113,7 @@
            <hr class="my-4">
            <small class="text-body-secondary">Haben Sie noch kein Konto? : <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="signup.php">Registrieren</a> </small>
         </form>
-      </div> 
-      <button type="button" class="btn btn-light">Light</button>    
+      </div>     
     </div>
 
     
