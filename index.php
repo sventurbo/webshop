@@ -131,6 +131,28 @@
       </div>
 
     </div>
+        <?php 
+        session_start();
+        //Hier ist code von Chrissi für Anzahl von sachen im Warenkorb die dann header angezeigt werden
+        $userId = 0;
+        $cartItems = 0;
+
+        if(isset($_SESSION['UserId'])){
+          $userId = (int) $_SESSION['userId'];
+
+        }
+        if(isset($_COOKIE['UserId'])){
+          $userId = (int) $_COOKIE['userId'];
+
+        }
+        
+        $sql= "SELECT COUNT(id) FROM shoppingcart WHERE user_id =".$userId; 
+        $cartResults = getDb()->query($sql);
+
+        $cartItems = $cartResults->fetchColumn(); 
+
+        ?>
+
                     
 
 

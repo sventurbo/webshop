@@ -25,17 +25,18 @@
             </ul>
             </div></li>
       </ul>
-
+     	
       <div class="col-md-3 text-end">
       <?php
                 $current_page = basename($_SERVER['PHP_SELF']);
                 if ($current_page === 'store.php') {
-                    echo '<a href="shoppingcart.php"><span class="cart-icon" onclick="openCart()">🛒</span> </a>';
+                    echo '<a href="shoppingcart.php"><span class="cart-icon" onclick="openCart()">🛒Warenkorb(<?=$cart ?></span> </a>';
                 }
                 ?>
         <a href="login.php?msg=0"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
         <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
       </div>
+      
     </header>
   </div>
 </nav>
