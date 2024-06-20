@@ -64,7 +64,7 @@ $stmt2->execute();
                             <p class="card-text"><?= $product['description'] ?></p>
                             <p class="card-text"><small class="text-body-secondary">Preis: €<?= $product['price'] ?></small></p>
                             <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-secondary" type="button stretched-link">In den Warenkorb</button>
+                            <a href="shoppingcart.php"><button class="btn btn-secondary" type="button stretched-link">In den Warenkorb</button></a>
                                 <button class="btn btn-primary" type="button">Kaufen</button>
                             </div>
                         </div>
