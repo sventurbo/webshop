@@ -60,7 +60,7 @@
 
     <body>
       <header>
-        <?php include('assets\templates\header.php'); ?>
+        <?php include('assets/templates/header.php'); ?>
       </header>
 
             <main>
@@ -136,7 +136,7 @@
 
         </main>
         <footer>
-          <?php include('assets\templates\assets\templates\footer.php'); ?>
+          <?php include('assets/templates/footer.php'); ?>
         </footer>
 
         <!-- Bootstrap JavaScript Libraries -->
