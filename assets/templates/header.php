@@ -1,5 +1,3 @@
-     
-<nav>
 <style>
   .icon {
       cursor: pointer;
@@ -21,7 +19,8 @@
   }
   </style>
 
-  <div class="container">
+<nav>
+    <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -32,37 +31,16 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="store.php" class="nav-link px-2">Produkte</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><a href="#" class="nav-link px-2">#</a></li>
-        <li><div class="dropdown">
-            <a href="#" class="nav-link px-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link</a>
-
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-            </div></li>
       </ul>
 
       <div class="col-md-3 text-end">
-      <?php
-                $current_page = basename($_SERVER['PHP_SELF']);
-
-                if ($current_page === 'store.php') {
-
-                  echo '<span class="icon" onclick="openCart()" style="font-size: 40px">🛒</span>';
-
-                } else {
-
-                  echo '<a href="login.php?msg=0"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>';
-                  echo '<a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>';
-
-                }
-
-                ?>
+        <?php if(!isset($_SESSION['email'])){?>
+        <a href="login.php"><button type="button" class="btn btn-outline-primary me-2">Anmelden</button></a>
+        <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
+        <?php } else{ ?>
+          <button type="button" class="btn btn-outline-success me-2" onclick="openCart()">🛒 Warenkorb</button>
+          <a href="assets\templates\logout.php"><button type="button" class="btn btn-outline-danger me-2">Abmelden</button></a>
+          <?php }?>
       </div>
     </header>
   </div>
