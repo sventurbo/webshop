@@ -48,13 +48,7 @@
     </label>
   </div>
 
-
-
-
-
-
-
-
+  <a href="checkout.php"><button type="button" class="btn btn-outline-primary me-2">Checkout</button></a>
 
 
 
