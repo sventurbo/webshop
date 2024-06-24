@@ -164,10 +164,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $product['title'] ?></h5>
                                     <p class="card-text"><?= $product['description'] ?></p>
-                                    <p class="card-text"><small class="text-body-secondary">Preis: €<?= $product['price'] ?></small></p>
+                                    <small class="text-success">Preis: €<?= $product['price'] ?></small>
                                     <div class="d-grid gap-2 d-md-block">
-                                        <button class="btn btn-secondary" type="button" onclick="addToCart(<?= $product['id'] ?>);">In den Warenkorb</button>
-                                        <button class="btn btn-primary" type="button">Kaufen</button>
+                                        <button class="btn btn-primary" type="button" onclick="addToCart(<?= $product['id'] ?>);">In den Warenkorb</button>
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="album py-5 bg-body-tertiary">
                 <div class="container">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-1">
                         <?php while ($productsDB = $productList->fetch()) {
                             $productID = $productsDB['id']; ?>
                             <div class="col">
@@ -208,8 +207,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="card-text"><?= $productsDB['description'] ?></p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a href="?product=<?= $productsDB['id'] ?>"><button class="btn btn-primary">Ansehen</button></a>
-                                                <button id="<?= $productsDB['id'] ?>" class="btn btn-secondary" onclick="addToCart(<?= $productsDB['id'] ?>);">Kaufen</button>
+                                                <a href="?product=<?= $productsDB['id'] ?>"><button class="btn btn-sm btn-primary">Ansehen</button></a>
+                                                <button id="<?= $productsDB['id'] ?>" class="btn btn-sm btn-secondary" onclick="addToCart(<?= $productsDB['id'] ?>);">In den Warenkorb</button>
                                             </div>
                                             <small class="text-success"><?= $productsDB['price'] ?></small>
                                         </div>
