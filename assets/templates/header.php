@@ -33,6 +33,10 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="store.php" class="nav-link px-2">Produkte</a></li>
+        <?php 
+        if (isset($_SESSION['permission']) || $_SESSION['permission'] == 'admin') { ?>
+        <li><a href="admin.php" class="nav-link px-2">Admin Panel</a></li>
+        <?php } ?>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -41,8 +45,10 @@
         <a href="signup.php"><button type="button" class="btn btn-primary">Registrieren</button></a>
         <?php } else{ ?>
           <button type="button" class="btn btn-outline-success me-2" onclick="openCart()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
-</svg> Warenkorb</button>
+          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
+            </svg>
+            Warenkorb
+          </button>
           <a href="assets\templates\logout.php"><button type="button" class="btn btn-outline-danger me-2">Abmelden</button></a>
           <?php }?>
       </div>
