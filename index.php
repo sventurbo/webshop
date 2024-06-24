@@ -69,7 +69,12 @@
                 <div class="col-lg-6 mx-auto">
                   <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis mi ac aliquet rutrum. Morbi eget nisi vitae justo consectetur ultricies. In interdum nulla leo, a convallis justo commodo nec. Maecenas faucibus dictum est. Cras ut odio aliquet, luctus felis quis, blandit sem.</p>
                   
-                  <p class="badge bg-primary-subtle border border-priimary-subtle text-primary-emphasis rounded-pill mb-4 mt-2">Schnelle Lieferung und top Qualität!</p>
+                  <p class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill mb-4 mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                      <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"/>
+                      <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+                    </svg>
+                    Schnelle Lieferung und top Qualität!</p>
                   
                   <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                     <!-- <a href="#"><button type="button" class="btn btn-outline-secondary btn-lg px-4">XYZ</button></a> -->
@@ -86,54 +91,6 @@
                 </div>
               </div>
             </div>
-
-             
-            <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-      <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Ein Benutzerkonto bei uns macht vieles einfacher!</h1>
-        <!-- <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
-      </div>
-
-
-      <div class="col-md-10 mx-auto col-lg-5">
-        <form action="signup.php" method="POST" class="row g-2 p-4 p-md-5 border rounded-3 bg-body-tertiary" data-bitwarden-watching="1">
-        
-        <div class="form-floating mb-3 col-md-6 position-relative">
-            <input type="text" name="firstname" class="form-control" id="floatingInput" placeholder="Max">
-            <label for="floatingInput">Vorname</label>
-          </div>
-          
-          <div class="form-floating mb-3 col-md-6 position-relative">
-            <input type="text" name="name" class="form-control" id="floatingInput" placeholder="Mustermann">
-            <label for="floatingInput">Nachname</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email Adresse</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-            <input type="password" name="password"  class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Passwort</label>
-          </div>
-          
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Angemeldet bleiben
-            </label>
-          </div>
-          <button name="submit" class="w-100 btn btn-lg btn-primary" type="submit">Registrieren</button>
-          <hr class="my-4">
-          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-        </form>
-      </div>
-
-    </div>
-                    
-
-
         </main>
         <footer>
           <?php include('assets/templates/footer.php'); ?>
