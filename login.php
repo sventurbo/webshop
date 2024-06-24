@@ -9,7 +9,7 @@
   if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $stmt = $con->prepare("SELECT email,password FROM users WHERE email=:email");
+    $stmt = $con->prepare("SELECT email,password,permission FROM users WHERE email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $userExists = $stmt->fetchAll();
@@ -22,12 +22,19 @@
     $passwordHashed = $userExists[0]["password"];
     $checkPassword = password_verify($password, $passwordHashed);
       if($checkPassword === true){
-        $_SESSION["email"] = $userExists[0]["email"];
-        header("Location: store.php");
-        if($checkPassword === false){
+        if($userExists[0]["permission"] === "admin"){
+          $_SESSION["permission"] = $userExists[0]["permission"];
+          $_SESSION["email"] = $userExists[0]["email"];
+          header("Location: admin.php");
+          exit;
+          } else {        
+            $_SESSION["email"] = $userExists[0]["email"];
+            header("Location: store.php");
+            exit;
+            }
+      } elseif($checkPassword === false){
           $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
-        } 
-      }else {
+        } else {
       $errorMsg =  "Login fehlgeschlagen, Passwort oder Email stimmen nicht.";
     }
   }
