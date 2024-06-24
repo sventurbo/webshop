@@ -105,42 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        #popupBox {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            padding: 20px;
-            background-color: #DCEDC8;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-            z-index: 1000;
-        }
-        #popupBox .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            color: red;
-            cursor: pointer;
-        }
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -178,16 +142,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newest = $newest->fetch(); ?>
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
                 <div class="col-md-6 p-lg-5 mx-auto my-5">
-                    <h1 class="display-3 fw-bold">Neu im Sortiment: </h1>
+                    <h1 class="display-3 fw-bold text-decoration-underline">Neu im Sortiment: </h1>
                     <h3 class="fw-normal text-muted mb-3"><?= $newest['title'] ?></h3>
+                    <h4 class="fw-normal text-muted mb-3"><?= $newest['description'] ?></h4>
                     <div class="d-flex gap-3 justify-content-center lead fw-normal">
                         <a class="icon-link" href="?product=<?= $newest['id'] ?>">
                             Ansehen
-                            <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                         </a>
                         <a class="icon-link" href="?product=<?= $newest['id'] ?>">
                             Kaufen
-                            <img src="assets/images/fanta.png" class="bi"><use xlink:href="#chevron-right"></use></img>
                         </a>
                     </div>
                 </div>
