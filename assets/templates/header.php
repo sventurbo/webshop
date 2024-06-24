@@ -34,7 +34,7 @@
         <li><a href="index.php" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="store.php" class="nav-link px-2">Produkte</a></li>
         <?php 
-        if (isset($_SESSION['permission']) || $_SESSION['permission'] == 'admin') { ?>
+        if (isset($_SESSION['permission']) || isset($_SESSION['permission']) == 'admin') { ?>
         <li><a href="admin.php" class="nav-link px-2">Admin Panel</a></li>
         <?php } ?>
       </ul>
