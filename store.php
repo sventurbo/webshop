@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $product['title'] ?></h5>
                                     <p class="card-text"><?= $product['description'] ?></p>
-                                    <small class="text-success">Preis: €<?= $product['price'] ?></small>
+                                    <p class="text-success">Preis: €<?= $product['price'] ?></p>
                                     <div class="d-grid gap-2 d-md-block">
                                         <button class="btn btn-primary" type="button" onclick="addToCart(<?= $product['id'] ?>);">In den Warenkorb</button>
                                     </div>
