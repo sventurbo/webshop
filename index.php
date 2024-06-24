@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!doctype html>
 <html lang="de" data-bs-theme="dark" data-lt-installed="true">
     <head>
@@ -28,7 +31,7 @@
             <div class="px-4 pt-5 my-5 text-center border-bottom">
                 <h1 class="display-4 fw-bold text-body-emphasis">Webshop</h1>
                 <div class="col-lg-6 mx-auto">
-                  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis mi ac aliquet rutrum. Morbi eget nisi vitae justo consectetur ultricies. In interdum nulla leo, a convallis justo commodo nec. Maecenas faucibus dictum est. Cras ut odio aliquet, luctus felis quis, blandit sem.</p>
+                  <p class="lead">Wir haben die besten Snacks und Drinks im Angebot. Schau dich doch mal in unserem Shop um :)</p>
                   
                   <p class="badge bg-success-subtle border border-success-subtle text-success-emphasis rounded-pill mb-4 mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
